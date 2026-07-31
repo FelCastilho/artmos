@@ -1,0 +1,243 @@
+/* ==================================================
+   HEADER
+================================================== */
+
+.site-header {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+
+    width: 100%;
+
+    border-bottom: 1px solid var(--border);
+
+    background-color: rgba(9, 11, 18, 0.9);
+}
+
+.header-inner {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ==================================================
+   LOGO
+================================================== */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+
+    font-family: var(--title-font);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.brand-symbol {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+
+    color: var(--green);
+}
+
+
+/* ==================================================
+   NAVEGAÇÃO DESKTOP
+================================================== */
+
+.site-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 36px;
+}
+
+.site-nav a {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+    color: var(--text);
+}
+
+.header-link {
+    flex-shrink: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-link:hover {
+    color: var(--green);
+}
+
+
+/* ==================================================
+   BOTÃO HAMBÚRGUER
+================================================== */
+
+.menu-button {
+    width: 44px;
+    height: 44px;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+.menu-button span {
+    width: 20px;
+    height: 2px;
+
+    display: block;
+
+    background-color: var(--text);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* Transforma o hambúrguer em X */
+
+.menu-button.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-button.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==================================================
+   MENU MOBILE
+================================================== */
+
+.mobile-menu {
+    display: none;
+
+    width: 100%;
+
+    padding: 12px 16px 20px;
+
+    border-top: 1px solid var(--border);
+
+    background-color: var(--background);
+}
+
+.mobile-menu a {
+    display: block;
+
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 15px;
+}
+
+.mobile-menu a:hover {
+    color: var(--text);
+}
+
+.mobile-menu a:last-child {
+    border-bottom: 0;
+
+    color: var(--green);
+}
+
+
+/* ==================================================
+   TABLET E CELULAR
+================================================== */
+
+@media (max-width: 900px) {
+
+    .site-nav {
+        display: none;
+    }
+
+    .header-link {
+        display: none;
+    }
+
+    .menu-button {
+        display: flex;
+    }
+
+    .mobile-menu.is-open {
+        display: block;
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        min-height: 74px;
+    }
+
+    .brand {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .brand-symbol {
+        width: 32px;
+        height: 32px;
+    }
+
+    .menu-button {
+        width: 40px;
+        height: 40px;
+    }
+
+}

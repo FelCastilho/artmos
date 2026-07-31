@@ -1,6 +1,9 @@
 ---
 import "../styles/global.css";
 
+import Header from "../components/header/header.astro";
+
+
 const planets = [
   {
     name: "Nereida",
@@ -44,24 +47,9 @@ const planets = [
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/" aria-label="Artmos, página inicial">
-          <span class="brand-symbol">A</span>
-          <span>ARTMOS</span>
-        </a>
-
-        <nav class="site-nav" aria-label="Navegação principal">
-          <a href="#mundos">Mundos</a>
-          <a href="#wallpapers">Wallpapers</a>
-          <a href="#journal">Journal</a>
-          <a href="#sobre">Sobre</a>
-        </nav>
-
-        <a class="header-link" href="#mundos">Explorar ↗</a>
-      </div>
-    </header>
-
+    
+	<Header />
+	
     <main>
       <section class="hero">
         <div class="hero-glow hero-glow-blue"></div>
