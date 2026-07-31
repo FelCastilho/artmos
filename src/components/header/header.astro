@@ -3,7 +3,6 @@ import "./style.css";
 ---
 
 <header class="site-header">
-
     <div class="container header-inner">
 
         <a
@@ -11,13 +10,11 @@ import "./style.css";
             class="brand"
             aria-label="Artmos, página inicial"
         >
-            <span class="brand-symbol">
-                A
-            </span>
-
-            <span>
-                ARTMOS
-            </span>
+            <img
+                src="/artmos-logo.png"
+                alt="Artmos"
+                class="logo-header"
+            />
         </a>
 
         <nav
@@ -30,24 +27,27 @@ import "./style.css";
             <a href="#sobre">Sobre</a>
         </nav>
 
-        <a
-            href="#mundos"
-            class="header-link"
-        >
-            Explorar →
-        </a>
+        <div class="header-actions">
+            <a
+                href="#mundos"
+                class="header-link"
+            >
+                <span>Explorar</span>
+                <span aria-hidden="true">→</span>
+            </a>
 
-        <button
-            class="menu-button"
-            type="button"
-            aria-label="Abrir menu"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+            <button
+                class="menu-button"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
 
     </div>
 
@@ -60,9 +60,8 @@ import "./style.css";
         <a href="#wallpapers">Wallpapers</a>
         <a href="#journal">Journal</a>
         <a href="#sobre">Sobre</a>
-        <a href="#mundos">Explorar →</a>
+        <a href="#mundos" class="mobile-menu__action">Explorar →</a>
     </nav>
-
 </header>
 
 <script>

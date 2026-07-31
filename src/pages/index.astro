@@ -2,7 +2,7 @@
 import "../styles/global.css";
 
 import Header from "../components/header/header.astro";
-
+import BluePlanetAstroComponent from "../components/planets/blue-planet/blue-planet.astro";
 
 const planets = [
   {
@@ -47,9 +47,8 @@ const planets = [
   </head>
 
   <body>
-    
-	<Header />
-	
+    <Header />
+
     <main>
       <section class="hero">
         <div class="hero-glow hero-glow-blue"></div>
@@ -100,28 +99,7 @@ const planets = [
             </dl>
           </div>
 
-          <div
-            class="hero-visual"
-            aria-label="Representação de um planeta azul"
-          >
-            <div class="orbit orbit-outer"></div>
-            <div class="orbit orbit-inner"></div>
-
-            <div class="hero-planet">
-              <div class="hero-planet-texture"></div>
-              <div class="hero-planet-shadow"></div>
-            </div>
-
-            <div class="planet-label label-top">
-              <span>COORDENADAS</span>
-              <strong>RA 18H 42M</strong>
-            </div>
-
-            <div class="planet-label label-bottom">
-              <span>DESIGNAÇÃO</span>
-              <strong>ART-024</strong>
-            </div>
-          </div>
+          <BluePlanetAstroComponent />
         </div>
       </section>
 
@@ -207,9 +185,7 @@ const planets = [
               <h2>Outros mundos</h2>
             </div>
 
-            <a class="text-link" href="/planets">
-              Ver catálogo completo →
-            </a>
+            <a class="text-link" href="/planets"> Ver catálogo completo → </a>
           </header>
 
           <div class="planet-grid">
@@ -222,7 +198,7 @@ const planets = [
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
-                      <div class="card-planet"></div>
+                      <div class="card-planet" />
                     </div>
 
                     <div class="planet-card-content">
@@ -254,8 +230,8 @@ const planets = [
             <h2>Leve um novo mundo para sua tela.</h2>
 
             <p class="wallpapers-text">
-              Imagens em alta resolução, preparadas para desktop e celular,
-              sem marcas ou elementos sobrepostos.
+              Imagens em alta resolução, preparadas para desktop e celular, sem
+              marcas ou elementos sobrepostos.
             </p>
 
             <a class="button button-light" href="/wallpapers">
@@ -287,9 +263,7 @@ const planets = [
               <h2>Notas de exploração</h2>
             </div>
 
-            <a class="text-link" href="/blog">
-              Ver artigos →
-            </a>
+            <a class="text-link" href="/blog"> Ver artigos → </a>
           </header>
 
           <div class="article-list">
@@ -298,9 +272,7 @@ const planets = [
 
               <div>
                 <p>Bastidores</p>
-                <h3>
-                  Como encontro mundos interessantes no SpaceEngine
-                </h3>
+                <h3>Como encontro mundos interessantes no SpaceEngine</h3>
               </div>
 
               <span>↗</span>
@@ -311,9 +283,7 @@ const planets = [
 
               <div>
                 <p>Exploração</p>
-                <h3>
-                  O que torna um planeta visualmente memorável?
-                </h3>
+                <h3>O que torna um planeta visualmente memorável?</h3>
               </div>
 
               <span>↗</span>
@@ -324,9 +294,7 @@ const planets = [
 
               <div>
                 <p>Processo</p>
-                <h3>
-                  Da descoberta ao wallpaper final
-                </h3>
+                <h3>Da descoberta ao wallpaper final</h3>
               </div>
 
               <span>↗</span>
@@ -343,9 +311,7 @@ const planets = [
               Sobre a Artmos
             </p>
 
-            <h2>
-              Nem todos os mundos precisam existir para nos inspirar.
-            </h2>
+            <h2>Nem todos os mundos precisam existir para nos inspirar.</h2>
           </div>
 
           <div class="about-copy">
@@ -360,9 +326,7 @@ const planets = [
               poderiam existir em algum ponto do universo.
             </p>
 
-            <a class="text-link" href="/about">
-              Conhecer o projeto →
-            </a>
+            <a class="text-link" href="/about"> Conhecer o projeto → </a>
           </div>
         </div>
       </section>
