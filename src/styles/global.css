@@ -21,7 +21,7 @@
 
     --border: rgba(255, 255, 255, 0.12);
 
-    --title-font: "Oxygen", sans-serif;
+    --title-font: "Manrope", sans-serif;
     --text-font: "Inter", sans-serif;
 }
 
@@ -36,11 +36,14 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
     margin: 0;
     min-width: 320px;
+    overflow-x: hidden;
 
     background-color: var(--background);
     color: var(--text);
@@ -84,11 +87,11 @@ img {
 
 .container {
     width: 100%;
-    max-width: 85%;
+    max-width: 1440px;
 
     margin: 0 auto;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 .section {
@@ -98,6 +101,16 @@ img {
 
 .muted {
     color: var(--muted);
+}
+
+/* Impede que conteúdos de Grid e Flex ultrapassem a tela */
+.hero-copy,
+.hero-visual,
+.featured-visual,
+.featured-content,
+.wallpapers-grid > div,
+.about-grid > div {
+    min-width: 0;
 }
 
 
@@ -1158,8 +1171,8 @@ img {
 @media (max-width: 1000px) {
 
     .container {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .site-nav {
@@ -1221,13 +1234,15 @@ img {
 @media (max-width: 700px) {
 
     .container {
+        width: 100%;
+        max-width: 100%;
         padding-left: 16px;
         padding-right: 16px;
     }
 
     .section {
-        padding-top: 82px;
-        padding-bottom: 82px;
+        padding-top: 72px;
+        padding-bottom: 72px;
     }
 
     .header-inner {
@@ -1240,38 +1255,62 @@ img {
 
     .hero {
         min-height: auto;
-
-        padding-top: 120px;
+        padding-top: 104px;
     }
 
     .hero-grid {
         min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 
-        gap: 30px;
+    .hero-copy {
+        width: 100%;
     }
 
     .hero h1 {
-        font-size: 48px;
+        max-width: 100%;
+        font-size: 44px;
+        line-height: 1.08;
     }
 
     .hero-description {
+        max-width: 100%;
         font-size: 16px;
+    }
+
+    .hero-actions {
+        width: 100%;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .button {
+        min-height: 50px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
 
     .hero-stats {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 54px;
+    }
 
-        gap: 24px;
+    .hero-stats dd {
+        line-height: 1.4;
     }
 
     .hero-visual {
-        min-height: 440px;
+        width: 100%;
+        min-height: 380px;
+        overflow: hidden;
     }
 
     .hero-planet {
-        width: 340px;
-        height: 340px;
+        width: 290px;
+        height: 290px;
     }
 
     .planet-label {
@@ -1279,42 +1318,57 @@ img {
     }
 
     .orbit-outer {
-        width: 440px;
-        height: 250px;
-    }
-
-    .orbit-inner {
-        width: 370px;
+        width: 360px;
         height: 210px;
     }
 
-    .section-heading h2 {
-        font-size: 42px;
+    .orbit-inner {
+        width: 310px;
+        height: 180px;
+    }
+
+    .section-heading {
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .section-heading h2,
+    .section-heading.compact h2 {
+        font-size: 40px;
     }
 
     .section-heading.compact {
         grid-template-columns: 1fr;
     }
 
-    .section-heading.compact h2 {
-        font-size: 42px;
+    .featured-world {
+        border-radius: 20px;
     }
 
     .featured-visual {
-        min-height: 400px;
+        min-height: 360px;
     }
 
     .featured-planet {
-        width: 290px;
-        height: 290px;
+        width: 240px;
+        height: 240px;
     }
 
     .featured-content {
-        padding: 34px 24px;
+        gap: 36px;
+        padding: 32px 20px;
     }
 
     .featured-content h3 {
-        font-size: 48px;
+        font-size: 46px;
+    }
+
+    .world-data {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .world-data div {
+        padding: 14px;
     }
 
     .planet-grid {
@@ -1322,68 +1376,127 @@ img {
     }
 
     .planet-card-image {
-        height: 340px;
+        height: 320px;
     }
 
     .card-planet {
-        width: 230px;
-        height: 230px;
+        width: 210px;
+        height: 210px;
+    }
+
+    .wallpapers-grid {
+        gap: 40px;
     }
 
     .wallpapers h2 {
-        font-size: 46px;
+        font-size: 42px;
     }
 
     .wallpaper-preview {
-        min-height: 360px;
+        width: 100%;
+        min-height: 330px;
+        overflow: hidden;
     }
 
     .screen-front {
-        width: 96%;
-        height: 250px;
-
-        left: 2%;
+        width: 94%;
+        height: 230px;
+        left: 3%;
+        bottom: 30px;
     }
 
     .screen-back {
-        width: 78%;
-        height: 190px;
+        width: 76%;
+        height: 170px;
+        top: 20px;
+        right: -10px;
     }
 
     .screen-planet {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
+        right: 30px;
     }
 
     .article-row {
-        min-height: 130px;
-
-        grid-template-columns: 38px 1fr 20px;
-
-        gap: 16px;
+        min-height: 120px;
+        grid-template-columns: 30px 1fr 20px;
+        gap: 12px;
     }
 
     .article-row h3 {
-        font-size: 21px;
+        font-size: 20px;
+    }
+
+    .about-grid {
+        gap: 44px;
     }
 
     .about h2 {
-        font-size: 44px;
+        font-size: 40px;
     }
 
     .footer-top {
         flex-direction: column;
+        gap: 48px;
     }
 
     .footer-nav {
-        gap: 55px;
+        flex-wrap: wrap;
+        gap: 48px;
     }
 
     .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-
         gap: 6px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-planet {
+        width: 250px;
+        height: 250px;
+    }
+
+    .orbit-outer {
+        width: 310px;
+        height: 180px;
+    }
+
+    .orbit-inner {
+        width: 270px;
+        height: 155px;
+    }
+
+    .section-heading h2,
+    .section-heading.compact h2,
+    .wallpapers h2,
+    .about h2 {
+        font-size: 36px;
+    }
+
+    .world-data {
+        grid-template-columns: 1fr;
     }
 }
