@@ -1,29 +1,21 @@
 ---
 import "../styles/global.css";
 
+import { getCollection } from "astro:content";
+
 import Header from "../components/header/header.astro";
+import FooterAstroComponent from "../components/footer/footer.astro";
 import BluePlanetAstroComponent from "../components/planets/blue-planet/blue-planet.astro";
 
-const planets = [
-  {
-    name: "Nereida",
-    type: "Mundo oceânico",
-    meta: "Atmosfera densa · 0.91 G",
-    color: "blue",
-  },
-  {
-    name: "Orpheon",
-    type: "Gigante gasoso",
-    meta: "Sistema binário · 1.27 G",
-    color: "violet",
-  },
-  {
-    name: "Caelum",
-    type: "Mundo temperado",
-    meta: "Oceanos rasos · 0.84 G",
-    color: "green",
-  },
-];
+
+const planets = await getCollection("planets");
+
+const orderedPlanets = planets.sort(
+    (a, b) =>
+        b.data.publishedAt.getTime() -
+        a.data.publishedAt.getTime()
+);
+
 ---
 
 <!doctype html>
@@ -62,13 +54,13 @@ const planets = [
             </p>
 
             <h1>
-              Explore o que existe
-              <strong>além do conhecido.</strong>
+              A <strong>art</strong>e de explorar o cos<strong>mos</strong>.
             </h1>
 
             <p class="hero-description">
-              Uma coleção visual de planetas descobertos no SpaceEngine,
-              acompanhados de histórias, dados e wallpapers.
+              Uma coleção visual dedicada à exploração de mundos imaginários,
+              transformando descobertas fictícias em registros contemplativos do
+              cosmos.
             </p>
 
             <div class="hero-actions">
@@ -173,49 +165,107 @@ const planets = [
         </div>
       </section>
 
-      <section class="section catalog">
-        <div class="container">
-          <header class="section-heading compact">
+      <section class="planet-section" id="planetas">
+        <div class="planet-section__container">
+          <header class="planet-section__header">
             <div>
-              <p class="eyebrow">
-                <span></span>
-                Arquivo recente
-              </p>
-
-              <h2>Outros mundos</h2>
+              <p class="eyebrow"><span></span>Arquivo planetário</p>
+              <h2>Mundos catalogados</h2>
             </div>
-
-            <a class="text-link" href="/planets"> Ver catálogo completo → </a>
+            <p class="planet-section__intro">
+              Uma seleção de mundos encontrados no SpaceEngine, organizados por
+              aparência, atmosfera e comportamento visual.
+            </p>
           </header>
 
-          <div class="planet-grid">
-            {
-              planets.map((planet, index) => (
-                <article class="planet-card">
-                  <a href={`/planets/${planet.name.toLowerCase()}`}>
-                    <div class={`planet-card-image ${planet.color}`}>
-                      <span class="card-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-
-                      <div class="card-planet" />
-                    </div>
-
-                    <div class="planet-card-content">
-                      <div>
-                        <p>{planet.type}</p>
-                        <h3>{planet.name}</h3>
-                      </div>
-
-                      <span>↗</span>
-                    </div>
-
-                    <p class="card-meta">{planet.meta}</p>
-                  </a>
-                </article>
-              ))
-            }
+          <div class="planet-filters" aria-label="Filtros de planetas">
+            <button class="planet-filter is-active" data-filter="all"
+              >Todos <span>06</span></button
+            >
+            <button class="planet-filter" data-filter="satellite"
+              >Satélite <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="astreroid"
+              >Asteróides <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="planets"
+              >Planetas <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="stars"
+              >Estrelas <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="nebulae"
+              >Nebulosas <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="galaxy"
+              >Galáxias <span>02</span></button
+            >
+            <button class="planet-filter" data-filter="black-hole"
+              >Buracos negros <span>02</span></button
+            >
           </div>
+
+          <div class="planet-list">
+    {
+        orderedPlanets.map((planet, index) => (
+            <article
+                class:list={[
+                    "planet-card",
+                    index === 0 && "planet-card--large",
+                ]}
+                data-category={planet.data.category}
+            >
+                <a
+                    href={`/planets/${planet.id}`}
+                    class="planet-card__link"
+                >
+                    <div class="planet-card__image">
+                        <img
+                            src={planet.data.image}
+                            alt={`Registro visual de ${planet.data.title}`}
+                            class="planet-card__photo"
+                        />
+
+                        <span class="planet-card__code">
+                            {planet.data.code}
+                        </span>
+
+                        <span class="planet-card__open">
+                            Abrir registro ↗
+                        </span>
+                    </div>
+
+                    <div class="planet-card__content">
+                        <div>
+                            <p class="planet-card__type">
+                                {planet.data.type}
+                            </p>
+
+                            <h3>{planet.data.title}</h3>
+                        </div>
+
+                        <dl class="planet-card__data">
+                            <div>
+                                <dt>Distância</dt>
+                                <dd>{planet.data.distance}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Temp.</dt>
+                                <dd>{planet.data.temperature}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </a>
+            </article>
+        ))
+    }
+</div>
+
+          <footer class="planet-section__footer">
+            <p>06 mundos disponíveis no arquivo</p><a href="#"
+              >Ver catálogo completo →</a>
+          </footer>
         </div>
       </section>
 
@@ -332,41 +382,8 @@ const planets = [
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-top">
-        <div>
-          <a class="brand" href="/">
-            <span class="brand-symbol">A</span>
-            <span>ARTMOS</span>
-          </a>
+    <FooterAstroComponent />
 
-          <p>
-            Explorando mundos inexistentes,<br />
-            inspirando imaginações reais.
-          </p>
-        </div>
-
-        <div class="footer-nav">
-          <div>
-            <strong>Explorar</strong>
-            <a href="/planets">Mundos</a>
-            <a href="/wallpapers">Wallpapers</a>
-            <a href="/blog">Journal</a>
-          </div>
-
-          <div>
-            <strong>Projeto</strong>
-            <a href="/about">Sobre</a>
-            <a href="/">Contato</a>
-            <a href="/">Instagram</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="container footer-bottom">
-        <span>© 2026 Artmos</span>
-        <span>Imagens criadas no SpaceEngine</span>
-      </div>
-    </footer>
+    <script src="../scripts/catalog.js"></script>
   </body>
 </html>

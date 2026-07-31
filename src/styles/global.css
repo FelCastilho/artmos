@@ -269,8 +269,6 @@ img {
 }
 
 .hero h1 strong {
-    display: block;
-
     color: var(--blue);
 }
 
@@ -689,136 +687,753 @@ img {
 
 
 /* ==================================================
-   CATÁLOGO
+   SEÇÃO DE PLANETAS
 ================================================== */
 
-.catalog {
-    border-top: 1px solid var(--border);
+.planet-section {
+    padding-top: 90px;
+    padding-bottom: 90px;
+
+    background-color: var(--background);
+    color: var(--text);
 }
 
-.planet-grid {
+.planet-section__container {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+
+/* ==================================================
+   CABEÇALHO DA SEÇÃO
+================================================== */
+
+.planet-section__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 60px;
+
+    margin-bottom: 46px;
+}
+
+.planet-section__header h2 {
+    max-width: 720px;
+
+    margin-top: 18px;
+    margin-bottom: 0;
+
+    font-family: var(--title-font);
+    font-size: 64px;
+    line-height: 1.05;
+}
+
+.planet-section__intro {
+    width: 420px;
+    max-width: 100%;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ==================================================
+   PEQUENO TÍTULO
+================================================== */
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 0;
+
+    color: var(--green);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.eyebrow span {
+    width: 28px;
+    height: 1px;
+
+    flex-shrink: 0;
+
+    background-color: var(--green);
+}
+
+
+/* ==================================================
+   FILTROS
+================================================== */
+
+.planet-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 36px;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.planet-filter {
+    position: relative;
+
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 16px;
+    padding-left: 0;
+
+    border: 0;
+
+    background-color: transparent;
+    color: var(--muted);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: color 0.25s ease;
+}
+
+.planet-filter span {
+    margin-left: 6px;
+
+    font-size: 9px;
+    vertical-align: top;
+}
+
+.planet-filter::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: var(--green);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform 0.25s ease;
+}
+
+.planet-filter:hover,
+.planet-filter.is-active {
+    color: var(--text);
+}
+
+.planet-filter.is-active::after {
+    transform: scaleX(1);
+}
+
+
+/* ==================================================
+   LISTA DE PLANETAS
+================================================== */
+
+.planet-list {
     display: flex;
     flex-wrap: wrap;
 
-    gap: 22px;
+    column-gap: 24px;
+    row-gap: 34px;
 }
 
 .planet-card {
-    width: calc((100% - 44px) / 3);
-    min-width: 0;
+    width: calc((100% - 24px) / 2);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
-.planet-card > a {
+.planet-card--large {
+    width: 58%;
+}
+
+.planet-card--large + .planet-card {
+    width: calc(42% - 24px);
+}
+
+.planet-card--wide {
+    width: 58%;
+}
+
+.planet-card.is-hidden {
+    display: none;
+}
+
+.planet-card__link {
     display: block;
 }
 
-.planet-card-image {
+
+/* ==================================================
+   IMAGEM DO CARD
+================================================== */
+
+.planet-card__image {
     position: relative;
 
-    height: 380px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 430px;
 
     overflow: hidden;
 
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
 
-    background-color: #0d111c;
+    background-color: var(--surface);
+}
+
+.planet-card--large .planet-card__image {
+    height: 570px;
+}
+
+.planet-card--wide .planet-card__image {
+    height: 480px;
+}
+
+.planet-card__image::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.04),
+            transparent 30%,
+            rgba(0, 0, 0, 0.28)
+        );
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   FUNDOS DOS CARDS
+================================================== */
+
+.planet-card__image--nyx {
+    background:
+        radial-gradient(
+            circle at 28% 35%,
+            rgba(56, 200, 178, 0.22),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #211639,
+            #070a13
+        );
+}
+
+.planet-card__image--ares {
+    background:
+        radial-gradient(
+            circle at 28% 35%,
+            rgba(255, 142, 75, 0.24),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            #5b2317,
+            #130a09
+        );
+}
+
+.planet-card__image--eira {
+    background:
+        radial-gradient(
+            circle at 30% 35%,
+            rgba(207, 235, 255, 0.24),
+            transparent 24%
+        ),
+        linear-gradient(
+            135deg,
+            #405268,
+            #0e1118
+        );
+}
+
+.planet-card__image--thalassa {
+    background:
+        radial-gradient(
+            circle at 30% 35%,
+            rgba(56, 200, 178, 0.28),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #193951,
+            #080b12
+        );
+}
+
+.planet-card__image--solis {
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            rgba(255, 197, 112, 0.2),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            #49301e,
+            #110d0a
+        );
+}
+
+.planet-card__image--kronos {
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            rgba(122, 155, 255, 0.23),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            #252b55,
+            #090a12
+        );
+}
+
+
+/* ==================================================
+   PLANETAS DOS CARDS
+================================================== */
+
+.planet-sphere {
+    position: absolute;
+
+    width: 72%;
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
 
     transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+        transform 0.7s ease,
+        filter 0.7s ease;
 }
 
-.planet-card:hover .planet-card-image {
-    transform: translateY(-5px);
+.planet-card:hover .planet-sphere {
+    transform: scale(1.045);
 
-    border-color: rgba(255, 255, 255, 0.25);
+    filter: brightness(1.08);
 }
 
-.card-number {
+.planet-sphere--nyx {
+    left: 12%;
+    bottom: -20%;
+
+    background:
+        radial-gradient(
+            circle at 32% 27%,
+            #b5ffff 0%,
+            #3b9ac0 18%,
+            #214477 48%,
+            #080b16 78%
+        );
+}
+
+.planet-sphere--ares {
+    right: 9%;
+    bottom: -16%;
+
+    background:
+        radial-gradient(
+            circle at 32% 27%,
+            #ffc47d 0%,
+            #cf5c34 24%,
+            #6e241f 58%,
+            #170b0b 82%
+        );
+}
+
+.planet-sphere--eira {
+    left: 14%;
+    bottom: -18%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #ffffff 0%,
+            #c3e3ef 23%,
+            #637f9c 58%,
+            #111722 82%
+        );
+}
+
+.planet-sphere--thalassa {
+    right: 8%;
+    bottom: -24%;
+
+    background:
+        radial-gradient(
+            circle at 32% 27%,
+            #b8fff4 0%,
+            #38c8b2 21%,
+            #185c75 55%,
+            #07101a 82%
+        );
+}
+
+.planet-sphere--solis {
+    left: 12%;
+    bottom: -20%;
+
+    background:
+        radial-gradient(
+            circle at 31% 25%,
+            #ffe6a6 0%,
+            #d29252 25%,
+            #714324 57%,
+            #160e0a 82%
+        );
+}
+
+.planet-sphere--kronos {
+    right: 10%;
+    bottom: -18%;
+
+    background:
+        radial-gradient(
+            circle at 34% 27%,
+            #dce4ff 0%,
+            #7189db 24%,
+            #303968 58%,
+            #0c0d18 82%
+        );
+}
+
+
+/* ==================================================
+   CÓDIGO DO PLANETA
+================================================== */
+
+.planet-card__code {
     position: absolute;
 
     top: 20px;
     left: 20px;
 
-    color: var(--muted);
+    z-index: 2;
 
+    color: rgba(255, 255, 255, 0.84);
+
+    font-family: monospace;
     font-size: 11px;
 }
 
-.card-planet {
-    width: 260px;
-    height: 260px;
 
-    max-width: 70%;
+/* ==================================================
+   LINK QUE APARECE NO HOVER
+================================================== */
 
-    flex-shrink: 0;
+.planet-card__open {
+    position: absolute;
 
-    border-radius: 50%;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 2;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
-.planet-card-image.blue .card-planet {
-    background:
-        radial-gradient(
-            circle at 35% 28%,
-            #a9c5ff 0%,
-            var(--blue) 23%,
-            #172c6b 60%,
-            #070912 82%
-        );
+.planet-card:hover .planet-card__open {
+    opacity: 1;
+
+    transform: translateY(0);
 }
 
-.planet-card-image.violet .card-planet {
-    background:
-        radial-gradient(
-            circle at 35% 28%,
-            #e3d7ff 0%,
-            #8064d9 23%,
-            #32215c 60%,
-            #080811 82%
-        );
-}
 
-.planet-card-image.green .card-planet {
-    background:
-        radial-gradient(
-            circle at 35% 28%,
-            #bdfff4 0%,
-            var(--green) 23%,
-            #14655d 60%,
-            #07100f 82%
-        );
-}
+/* ==================================================
+   CONTEÚDO DO CARD
+================================================== */
 
-.planet-card-content {
+.planet-card__content {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 30px;
 
-    margin-top: 22px;
+    padding-top: 18px;
 }
 
-.planet-card-content p,
-.card-meta {
+.planet-card__type {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.planet-card h3 {
+    margin-top: 6px;
+    margin-bottom: 0;
+
+    font-family: var(--title-font);
+    font-size: 32px;
+}
+
+
+/* ==================================================
+   DADOS DO PLANETA
+================================================== */
+
+.planet-card__data {
+    display: flex;
+
+    gap: 28px;
+
+    margin: 0;
+}
+
+.planet-card__data div {
+    min-width: 58px;
+}
+
+.planet-card__data dt {
+    color: var(--muted);
+
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.planet-card__data dd {
+    margin-top: 4px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+
+    color: var(--text);
+
+    font-family: monospace;
+    font-size: 12px;
+}
+
+
+/* ==================================================
+   RODAPÉ DA SEÇÃO
+================================================== */
+
+.planet-section__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-top: 60px;
+    padding-top: 24px;
+
+    border-top: 1px solid var(--border);
+}
+
+.planet-section__footer p {
+    margin: 0;
+
     color: var(--muted);
 
     font-size: 12px;
 }
 
-.planet-card-content h3 {
-    margin-top: 5px;
+.planet-section__footer a {
+    color: var(--text);
 
-    font-size: 26px;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
 }
 
-.card-meta {
-    margin-top: 10px;
+.planet-section__footer a:hover {
+    color: var(--green);
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 980px) {
+
+    .planet-section__header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 24px;
+    }
+
+    .planet-section__header h2 {
+        font-size: 52px;
+    }
+
+    .planet-card,
+    .planet-card--large,
+    .planet-card--large + .planet-card,
+    .planet-card--wide {
+        width: calc((100% - 24px) / 2);
+    }
+
+    .planet-card--large .planet-card__image,
+    .planet-card--wide .planet-card__image,
+    .planet-card__image {
+        height: 430px;
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 700px) {
+
+    .planet-section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .planet-section__container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .planet-section__header h2 {
+        font-size: 42px;
+    }
+
+    .planet-filters {
+        flex-wrap: nowrap;
+
+        gap: 22px;
+
+        overflow-x: auto;
+
+        padding-bottom: 1px;
+
+        scrollbar-width: none;
+    }
+
+    .planet-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .planet-filter {
+        flex-shrink: 0;
+    }
+
+    .planet-list {
+        row-gap: 42px;
+    }
+
+    .planet-card,
+    .planet-card--large,
+    .planet-card--large + .planet-card,
+    .planet-card--wide {
+        width: 100%;
+    }
+
+    .planet-card--large .planet-card__image,
+    .planet-card--wide .planet-card__image,
+    .planet-card__image {
+        height: 390px;
+    }
+
+    .planet-card__content {
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .planet-card__data {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    .planet-card h3 {
+        font-size: 28px;
+    }
+
+    .planet-section__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 400px) {
+
+    .planet-section__header h2 {
+        font-size: 36px;
+    }
+
+    .planet-card--large .planet-card__image,
+    .planet-card--wide .planet-card__image,
+    .planet-card__image {
+        height: 340px;
+    }
+
+    .planet-card__data {
+        gap: 16px;
+    }
+
 }
 
 
@@ -1056,91 +1671,6 @@ img {
 
     color: var(--text);
 }
-
-
-/* ==================================================
-   FOOTER
-================================================== */
-
-.site-footer {
-    padding-top: 80px;
-
-    background-color: #06070b;
-}
-
-.footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 80px;
-
-    padding-bottom: 70px;
-}
-
-.footer-top > div:first-child {
-    min-width: 0;
-}
-
-.footer-top p {
-    margin-top: 24px;
-
-    color: var(--muted);
-
-    font-size: 14px;
-}
-
-.footer-nav {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-
-    gap: 100px;
-}
-
-.footer-nav div {
-    display: flex;
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-.footer-nav strong {
-    margin-bottom: 8px;
-
-    font-family: var(--title-font);
-}
-
-.footer-nav a {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    transition: color 0.2s ease;
-}
-
-.footer-nav a:hover {
-    color: var(--text);
-}
-
-.footer-bottom {
-    min-height: 74px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 30px;
-
-    border-top: 1px solid var(--border);
-
-    color: var(--muted);
-
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
 
 /* ==================================================
    TABLET
